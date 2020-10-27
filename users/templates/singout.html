@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} Registro e usuario {% endblock %}
+
+{% block content %}
+    <style>
+
+    </style>
+    <div class="container">
+        <div class="box">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <h3 class="title">Registro de usuario</h3>
+                    <form action="{% url 'users:signup' %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <br>
+                        <button type="submit" class="button is-block is-info is-large is-fullwidth">
+                            Registrarse
+                            <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
