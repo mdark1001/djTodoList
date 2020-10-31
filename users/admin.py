@@ -28,6 +28,9 @@ class ProfileInline(admin.StackedInline):
 
 
 class UserAdmin(BaseUserAdmin):
+    """
+
+    """
     inlines = (ProfileInline,)
     list_display = (
         'username',

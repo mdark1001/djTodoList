@@ -1,0 +1,28 @@
+<footer class="lg:hidden ss:hidden h-20">
+    <div class="w-full flex border border-indigo-400 mt-2  h-full  justify-center">
+        <a href="{% url 'tasks:home' %}"
+           class="w-full flex items-center justify-center border-r hover:bg-indigo-400 hover:text-white">
+            <div
+
+                    class="text-gray group inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150">
+                <i class="fa fa-home"></i>
+                Inicio
+
+            </div>
+        </a>
+        <a href="/" class="w-full flex items-center justify-center border-r hover:bg-indigo-400 hover:text-white">
+            <div
+                    class="text-base leading-6 font-medium text-gray hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150 hover:text-white">
+                <i class="fa fa-table"></i>
+                Tablero
+            </div>
+        </a>
+        <a href="{%  url 'tasks:create' %}" class="w-full flex items-center justify-center border-r hover:bg-indigo-400 hover:text-white">
+            <div
+                    class="text-base leading-6 font-medium text-gray hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150 hover:text-white">
+                <i class="fa fa-plus"></i>
+                Agregar
+            </div>
+        </a>
+    </div>
+</footer>

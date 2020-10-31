@@ -1,74 +1,90 @@
-{% extends 'base.html' %}
+{% extends 'user_base.html' %}
 {% load static %}
 {% block title %}
     Login
 {% endblock %}
 {% block content %}
-    <section class="hero  is-fullheight">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-black">Bienvenido</h3>
-                    <hr class="login-hr">
-                    {#                  <p class="subtitle has-text-black">Please login to proceed.</p>                    #}
-                    <div class="box">
 
-
-                        <div class="columns is-flex is-centered">
-                            <figure class="image is-128x128">
-                                <img class="" src="{% static 'image/icon.png' %}">
-                            </figure>
-                        </div>
-                        {% if form.errors %}
-                            <div class="message is-danger">
-                                <div class="message-header">
-                                    <b>Atención:</b> Your username and password didn't match. Please try again.
-                                    <button class="delete" aria-label="delete"></button>
-                                </div>
-                            </div>
-                        {% endif %}
-                        {% if 'register' in request.GET %}
-                            <div class="message is-success">
-                                <div class="message-header">
-                                    <b>Se creó correctamente su cuenta</b>
-                                    <button class="delete" aria-label="delete"></button>
-                                </div>
-                            </div>
-                        {% endif %}
-                        <form action="{% url 'users:login' %}" method="post">
-                            {% csrf_token %}
-                            <div class="field">
-                                <label for="">Usuario</label>
-                                <div class="control">
-
-                                    <input class="input is-large" type="textr" placeholder="Username"
-                                           name="username"
-                                           autocomplete="false"
-                                           id="username"
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <lable>Contraseña</lable>
-                                <div class="control">
-                                    <input class="input is-large"
-                                           name="password"
-                                           id="password"
-                                           type="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <button type="submit" class="button is-block is-info is-large is-fullwidth">
-                                Iniciar sesión
-                                <i class="fa fa-sign-in" aria-hidden="true"></i></button>
-                        </form>
+    <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full">
+            <div>
+                <img class="mx-auto h-12 w-auto"
+                     src="{% static 'image/icon.png' %}"
+                     alt="Workflow">
+                <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                    Iniciar sesión
+                </h2>
+                <p class="mt-2 text-center text-sm leading-5 text-gray-600">
+                    O <br>
+                    <a href="{% url 'users:signup' %}"
+                       class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                        Sí aún no tienes una cuenta puuedes registrarte aquí
+                    </a>
+                </p>
+                {% if form.errors %}
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">Atención:</strong>
+                        <span class="block sm:inline">Su usuario o contraseña son incorrectos</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                            <svg class="fill-current h-6 w-6 text-red-500" role="button"
+                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path
+                                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                          </span>
                     </div>
-                    <p class="has-text-grey">
-                        <a href="{% url 'users:signup' %}">Registrate</a> &nbsp;·&nbsp;
-                        <a href="">Reestablecer password</a> &nbsp;·&nbsp;
-                    </p>
-                </div>
+                {% endif %}
+                {% if 'register' in request.GET %}
+                    <div class="bg-blue-100 border border-blue-100 text-blue-700 px-4 py-3 rounded relative"
+                         role="alert">
+                        <strong class="font-bold">Se creó correctamente su cuenta</strong>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                            <svg class="fill-current h-6 w-6 text-blue-500" role="button"
+                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path
+                                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                          </span>
+
+                    </div>
+                {% endif %}
             </div>
+
+            <form class="mt-8" action="{% url 'users:login' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="remember" value="true">
+                <div class="rounded-md shadow-sm">
+                    <div>
+                        <input aria-label="Nombre de usuario" name="username" type="text" required
+                               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+                               placeholder="Nombre de usuario">
+                    </div>
+                    <div class="-mt-px">
+                        <input aria-label="Contrseña" name="password" type="password" required
+                               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+                               placeholder="Contrseña">
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between">
+
+                    <div class="text-sm leading-5">
+                        <a href="#"
+                           class="font-medium  center text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                            Olvide mi contraseña
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <button type="submit"
+                            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                        <i class="fa fa-lock m-1"></i>
+                        <span>
+                        Iniciar sesión
+                            </span>
+                    </button>
+                </div>
+            </form>
+
         </div>
-    </section>
+    </div>
+
+
 {% endblock %}

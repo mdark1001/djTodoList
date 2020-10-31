@@ -17,19 +17,19 @@ class SignupForm(forms.Form):
         min_length=4,
         max_length=50,
         widget=forms.TextInput(
-            attrs={'class': 'input', 'placeholder': 'Nombre de usuario'}
+            attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'placeholder': 'Nombre de usuario'}
         ),
         label='Nombre de usuario'
     )
     password = forms.CharField(
         max_length=70,
-        widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder': 'Contraseña'}),
+        widget=forms.PasswordInput(attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'placeholder': 'Contraseña'}),
         label='Contraseña'
     )
     password_confirmation = forms.CharField(
         max_length=70,
         widget=forms.PasswordInput(
-            attrs={'class': 'input', 'placeholder': 'Confirmar Contraseña'}
+            attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'placeholder': 'Confirmar Contraseña'}
         ),
         label='Confirmar contraseña'
     )
@@ -37,7 +37,7 @@ class SignupForm(forms.Form):
         min_length=2,
         max_length=50,
         widget=forms.TextInput(
-            attrs={'class': 'input', 'placeholder': 'Nombre(s)'}
+            attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'placeholder': 'Nombre(s)'}
         ),
         label='Nombre(s)'
     )
@@ -45,7 +45,7 @@ class SignupForm(forms.Form):
         min_length=2,
         max_length=50,
         widget=forms.TextInput(
-            attrs={'class': 'input', 'placeholder': 'Apellido(s)'}
+            attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'placeholder': 'Apellido(s)'}
         ),
         label='Apellido(s)'
     )
@@ -53,7 +53,7 @@ class SignupForm(forms.Form):
         min_length=6,
         max_length=70,
         widget=forms.EmailInput(
-            attrs={'class': 'input', 'placeholder': 'Email'}
+            attrs={'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', 'placeholder': 'Email'}
         ),
         required=True,
         label='Correo electrónico'

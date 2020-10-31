@@ -1,26 +1,57 @@
-{% extends 'base.html' %}
+{% extends 'user_base.html' %}
+{% load static %}
 {% block title %} Registro e usuario {% endblock %}
 
 {% block content %}
-    <style>
 
-    </style>
-    <div class="container">
-        <div class="box">
-            <div class="columns">
-                <div class="column is-half is-offset-one-quarter">
-                    <h3 class="title">Registro de usuario</h3>
-                    <form action="{% url 'users:signup' %}" method="post">
+    <div class="container mx-auto">
+        <div class=" flex items-center  justify-center">
+            <div class="max-w-md w-full">
+
+                <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div>
+                        <img class="mx-auto h-12 w-auto"
+                             src="{% static 'image/icon.png' %}"
+                             alt="Workflow">
+                        <h3 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">Registro de
+                            usuario</h3>
+                    </div>
+                    <div>
+                        {% if form.errors %}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                 role="alert">
+                                <strong class="font-bold">Atención:</strong>
+                                <span class="block sm:inline">
+                          {% for key, value in form.errors.items %}
+                <span class="fieldWrapper">
+                    {{ key }}:{{ value }}
+                </span>
+            {% endfor %}
+                        </span>
+                                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                            <svg class="fill-current h-6 w-6 text-red-500" role="button"
+                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path
+                                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                          </span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <form class="mt-8" action="{% url 'users:signup' %}" method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {{ form }}
                         <br>
-                        <button type="submit" class="button is-block is-info is-large is-fullwidth">
+                        <button type="submit"
+                                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                            <i class="fa fa-check m-1"></i>
                             Registrarse
                             <i class="fa fa-sign-in" aria-hidden="true"></i></button>
                     </form>
+                <div class="mt-2 flex justify-center items-center ">
+                    <a class="text-indigo-400" href="{% url 'users:login' %}">Ya tengo una cuenta</a>
+                </div>
+
                 </div>
             </div>
         </div>
-
     </div>
 {% endblock %}

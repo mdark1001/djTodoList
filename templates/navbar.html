@@ -1,60 +1,72 @@
 {% load static %}
-<nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-            <img src="{% static 'image/icon.png' %}" width="38" height="28">
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-           data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item">
-                Home
-            </a>
-
-            <a class="navbar-item">
-                Dashboard
-            </a>
-
-
-        </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-
-                        <span class="image is-48x48">
-                            {% if user.profile.pricture.url %}
-                                <img class="is-rounded" src="{{ user.profile.pricture.url }}">
-                            {% else %}
-                                <img class="is-rounded" src="{% static 'image/user.png' %}">
-                            {% endif %}
-                        </span>
-                    @{{ user.username }}
+<div class="relative bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+            <div class="lg:w-0 lg:flex-1">
+                <a href="/" class="flex">
+                    <img class="h-8 w-auto sm:h-10" src="{% static 'image/icon.png' %}" alt="Workflow">
                 </a>
+            </div>
+            <nav class="hidden md:flex space-x-10">
+                <a href="{% url 'tasks:home' %}"
+                   class="text-gray-500 group inline-flex items-center space-x-2 text-base leading-6 font-medium hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150">
+                    <i class="fa fa-home"></i>
+                    Inicio
+                </a>
+                <a href="{% url 'tasks:home' %}"
+                   class="text-base leading-6 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150">
+                    <i class="fa fa-table"></i>
+                    Tablero
+                </a>
+            </nav>
+            <div class=" md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <div class="relative">
 
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="">
-                        Perfil
-                    </a>
-                    <a class="navbar-item">
-                        Compartir
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item" href="{% url 'users:logout' %}">
-                        Cerrar sesión
-                    </a>
+                        <button href="#"
+                                id="button-menu-username"
+                                class="whitespace-no-wrap inline-flex
+                              items-center justify-center px-4 py-2
+                              rounded-md text-gray ">
+                            @{{ request.user.username }}
+                            <span>
+                            <i class="fa fa-chevron-down"></i>
+                                </span>
+                        </button>
+                        <div id="menu-username"
+                             class="hidden absolute left-1/2 transform -translate-x-1/2 mt-3 px-2 w-64 max-w-md sm:px-0">
+                            <div class="rounded-lg shadow-lg">
+                                <div class="rounded-lg shadow-xs overflow-hidden">
+                                    <div class="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                                        <a href="{% url 'users:profile' %}"
+                                           class="-m-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+
+                                            <div class="space-y-1">
+                                                <p class="text-base leading-6 font-medium text-gray-900">
+                                                    <i class="fa fa-user-alt"></i>
+                                                    Profile
+                                                </p>
+                                            </div>
+                                        </a>
+                                        <hr>
+                                        <a href="{% url 'users:logout' %}"
+                                           class="-m-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+                                            <div class="space-y-1">
+                                                <p class="text-base leading-6 font-medium text-gray-900">
+                                                    <i class="fas fa-sign-out-alt"></i>
+                                                    Cerrar sesión
+                                                </p>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
-</nav>
-
+</div>
+<script src="{% static 'js/navbar.js' %}"></script>
